@@ -1,9 +1,13 @@
 #include <iostream>
-
-
-#include "funcs.h"
+#include <cctype>
+#include "caesar.h"
 
 int main()
 {
-  return 0;
+  // Driver code to test the functions
+    std::string plaintext = "Hello, World!";
+    int rshift = 10;
+    std::string encryptedText = encryptCaesar(plaintext, rshift);
+    std::cout << "Encrypted text: " << encryptedText << std::endl;
+    return 0;
 }
