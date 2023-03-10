@@ -2,28 +2,23 @@
 #include <string>
 #include <cctype>
 #include "caesar.h"
+#include "vigenere.h"
 
 // A helper function to shift one character by rshift
-char shiftChar(char c, int rshift) { //param: char and right shift
-    if(std::isalpha(c)) { //checks if char is in the alphabet
-        //convert char to lowercase
-        char lower_c = std::tolower(c);
-        // subtract ASCII code for 'a' to shift the range from
-        // 0 ≤ rshift ≤ 25. apply the shift of the ASCII code by adding rshift. 
-        // do modulo 26 to ensure value can wrap around alphabet if necessary
-        // and then add the ASCII code value for 'a' back to shift back to the
-        // original range.
-        char shifted_c = (lower_c - 'a' + rshift) % 26 + 'a';
-        if(std::isupper(c)) { //if the char was originally uppercase
-            shifted_c = std::toupper(shifted_c); //convert the shifted char back
-                                     //to uppercase if it was originally uppercase.
-        }
-        return shifted_c; //return shifted char
+//param: char and shift
+//return: char
+char shiftChar(char c, int shift) {
+    if (!isalpha(c)) { //checks if NOT alphabetic char
+        return c; // don't shift non-alphabetic chars
     }
-    else { //if the char is not a part of the alphabet (like punctuation or something)
-        return c; //return the char in its original, unchanged form
-    }
+    char start = isupper(c) ? 'A' : 'a'; // sets the value of start to either 'A' or 'a' based on whether
+                                        // the input char c is uppercase or lowercase, respectively
+    return start + (c - start + shift) % 26; //Calculate the shifted character by first subtracting
+    //'start' from 'c' to get the index of the letter in the alphabet. Then add 'shift' to this index 
+    //and take the result modulo 26 to ensure that the result stays within the range of the alphabet. 
+    //Finally, it adds the starting char value start back to the result to get the final shifted char.
 }
+
 
 // Caesar cipher encryption
 std::string encryptCaesar(std::string plaintext, int rshift) {
