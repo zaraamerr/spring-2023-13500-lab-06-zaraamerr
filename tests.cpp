@@ -24,3 +24,19 @@ TEST_CASE("Decrypt Caesar and Decrypt Vigenere Test Cases")
     CHECK(decryptVigenere("Jevpq, Wyvnd!", "cake") == "Hello, World!");
     CHECK(decryptVigenere("R zyzn qyhrbq", "joke") == "I love coding");
 }
+
+TEST_CASE("Frequency Cases"){
+    CHECK(freq('a',"aaaa")==100);
+    CHECK(freq('o', "hello world") == doctest::Approx(18.1818));
+}
+
+TEST_CASE("Distance Cases"){
+    double a[26]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    double b[26]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    CHECK(distance(a,b) == 0);
+}
+
+TEST_CASE("Solve using probability"){
+    CHECK(solve(encryptCaesar("I love cats from the moon and back", 10))=="I love cats from the moon and back");
+    CHECK(solve(encryptCaesar("Programming is my favorite weekend activity", 15))=="Programming is my favorite weekend activity");
+}

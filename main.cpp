@@ -15,5 +15,7 @@ int main()
     std::cout << decryptCaesar("Bfd yt Lt!", 5) << std::endl;
     std::cout << decryptVigenere("Jevpq, Wyvnd!", "cake") << std::endl;
     std::cout << decryptVigenere("R zyzn qyhrbq", "joke") << std::endl;
+    std::cout<<solve(encryptCaesar("I love cats from the moon and back", 10))<<std::endl;
+    std::cout<<solve(encryptCaesar("Programming is my favorite weekend activity", 15))<<std::endl;
     return 0;
 }
